@@ -28,13 +28,13 @@ public class ExprBaseListener implements ExprListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterMult(ExprParser.MultContext ctx) { }
+	@Override public void enterGrupo(ExprParser.GrupoContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitMult(ExprParser.MultContext ctx) { }
+	@Override public void exitGrupo(ExprParser.GrupoContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -52,18 +52,6 @@ public class ExprBaseListener implements ExprListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterTerm(ExprParser.TermContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitTerm(ExprParser.TermContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
 	@Override public void enterElem(ExprParser.ElemContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -71,6 +59,18 @@ public class ExprBaseListener implements ExprListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitElem(ExprParser.ElemContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterProduto(ExprParser.ProdutoContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitProduto(ExprParser.ProdutoContext ctx) { }
 
 	/**
 	 * {@inheritDoc}

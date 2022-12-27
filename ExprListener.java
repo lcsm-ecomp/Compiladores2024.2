@@ -17,17 +17,17 @@ public interface ExprListener extends ParseTreeListener {
 	 */
 	void exitProgram(ExprParser.ProgramContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code Mult}
+	 * Enter a parse tree produced by the {@code Grupo}
 	 * labeled alternative in {@link ExprParser#expr}.
 	 * @param ctx the parse tree
 	 */
-	void enterMult(ExprParser.MultContext ctx);
+	void enterGrupo(ExprParser.GrupoContext ctx);
 	/**
-	 * Exit a parse tree produced by the {@code Mult}
+	 * Exit a parse tree produced by the {@code Grupo}
 	 * labeled alternative in {@link ExprParser#expr}.
 	 * @param ctx the parse tree
 	 */
-	void exitMult(ExprParser.MultContext ctx);
+	void exitGrupo(ExprParser.GrupoContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code Soma}
 	 * labeled alternative in {@link ExprParser#expr}.
@@ -41,25 +41,27 @@ public interface ExprListener extends ParseTreeListener {
 	 */
 	void exitSoma(ExprParser.SomaContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code Term}
+	 * Enter a parse tree produced by the {@code Elem}
 	 * labeled alternative in {@link ExprParser#expr}.
-	 * @param ctx the parse tree
-	 */
-	void enterTerm(ExprParser.TermContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code Term}
-	 * labeled alternative in {@link ExprParser#expr}.
-	 * @param ctx the parse tree
-	 */
-	void exitTerm(ExprParser.TermContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link ExprParser#elem}.
 	 * @param ctx the parse tree
 	 */
 	void enterElem(ExprParser.ElemContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link ExprParser#elem}.
+	 * Exit a parse tree produced by the {@code Elem}
+	 * labeled alternative in {@link ExprParser#expr}.
 	 * @param ctx the parse tree
 	 */
 	void exitElem(ExprParser.ElemContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code Produto}
+	 * labeled alternative in {@link ExprParser#expr}.
+	 * @param ctx the parse tree
+	 */
+	void enterProduto(ExprParser.ProdutoContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code Produto}
+	 * labeled alternative in {@link ExprParser#expr}.
+	 * @param ctx the parse tree
+	 */
+	void exitProduto(ExprParser.ProdutoContext ctx);
 }

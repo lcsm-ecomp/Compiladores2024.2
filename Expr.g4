@@ -2,13 +2,12 @@ grammar Expr;
 
 program : expr EOF ;
 
-expr : elem #Term
-     | expr SUM expr #Soma 
-     | expr MULT expr #Mult
+expr : NUM #Elem
+     | expr MULT expr #Produto
+     | expr SUM expr #Soma
+     | '(' expr ')' #Grupo 
      ;
      
-elem : NUM
-     | '(' expr ')';  
      
 NUM : [0-9]+ ;
 SUM : '+' ;
