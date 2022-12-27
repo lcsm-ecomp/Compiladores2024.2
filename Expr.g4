@@ -8,12 +8,9 @@ expr : elem #Term
      ;
      
 elem : NUM
-     | '(' expr ')';
-     
-     
+     | '(' expr ')';  
      
 NUM : [0-9]+ ;
 SUM : '+' ;
 MULT : '*' ;
-
 SPACES : (' '|'\n') -> skip ;
