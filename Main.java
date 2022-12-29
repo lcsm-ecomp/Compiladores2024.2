@@ -8,16 +8,15 @@ class Main {
 
     public static int avalie(ParseTree t) {
         String nomeClasse = t.getClass().getName();
-        switch (nomeClasse) {
-        case "ExprParser$ElemContext":
+        if (t instanceof ExprParser.ElemContext) 
            return Integer.parseInt(t.getChild(0).getText());
-        case "ExprParser$SomaContext":
+        else if (t instanceof ExprParser.SomaContext) 
            return avalie(t.getChild(0)) + avalie(t.getChild(2));
-        case "ExprParser$ProdutoContext":
+        else if (t instanceof ExprParser.ProdutoContext) 
            return avalie(t.getChild(0)) * avalie(t.getChild(2));
-        case "ExprParser$GrupoContext":
+        else if (t instanceof ExprParser.GrupoContext) 
            return avalie(t.getChild(1));
-        }
+           
         throw new RuntimeException("Nao ser compilar " + nomeClasse + " no codigo : " + t.getText());
     }
     public static void main(String args[]) throws Exception {
