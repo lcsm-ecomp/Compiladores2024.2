@@ -7,9 +7,19 @@ import java.io.*;
 
 class Main {
 
-   
+    /*
+       A função getType é responsável por obter o nome da regra responsável pela 
+       produção de um nó da árvore sintática. Ao gerar o código de uma regra. Por
+       exemplo:
+           Expr : Expr MAIS Expr #Soma
+       O ANTLR não armazena na árvore nenhuma variável de instacia que indique que
+       o foi gerado pela regra #Soma. Para isso ele um objeto pertencente a classe:
+           ExprParser$SomaContext
+       a função getType recupera o nome da regra a partir do nome da classe removendo 
+       o prefixo "ExprParser$" e o sufixo "Context"
+     */
     static Pattern classNamePatern = Pattern.compile("[a-zA-Z]+[$]([A-Za-z]+)Context");
-    static String getType(ParseTree t) {
+    static String getRule(ParseTree t) {
        String className = t.getClass().getName();
        Matcher m = classNamePatern.matcher(className);
        if (m.find()) {
@@ -21,7 +31,7 @@ class Main {
 
     public static Map<String,Integer> memoria = new HashMap<>();
     public static int avalie(ParseTree t) {
-        String ruleName = getType(t);
+        String ruleName = getRule(t);
         switch (ruleName) {
         case "Elem":
            return Integer.parseInt(t.getChild(0).getText());
@@ -50,7 +60,6 @@ class Main {
         ExprParser parser = new ExprParser( tokens ); 
         ParserRuleContext tree = parser.expr();
         System.out.printf("Tree = %s\n", tree.toStringTree(parser));
-        System.out.printf("Nome da classe: %s\n", getType(tree));
         memoria.put("x",8);
         System.out.printf("Valor da expressão: %d\n",avalie(tree));
         
