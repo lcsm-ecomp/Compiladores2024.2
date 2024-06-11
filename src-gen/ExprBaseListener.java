@@ -5,48 +5,72 @@ import org.antlr.v4.runtime.tree.ErrorNode;
 import org.antlr.v4.runtime.tree.TerminalNode;
 
 /**
- * This class provides an empty implementation of {@link SimpleCListener},
+ * This class provides an empty implementation of {@link ExprListener},
  * which can be extended to create a listener which only needs to handle a subset
  * of the available methods.
  */
 @SuppressWarnings("CheckReturnValue")
-public class SimpleCBaseListener implements SimpleCListener {
+public class ExprBaseListener implements ExprListener {
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterStart(SimpleCParser.StartContext ctx) { }
+	@Override public void enterProgram(ExprParser.ProgramContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitStart(SimpleCParser.StartContext ctx) { }
+	@Override public void exitProgram(ExprParser.ProgramContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterCom(SimpleCParser.ComContext ctx) { }
+	@Override public void enterConst(ExprParser.ConstContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitCom(SimpleCParser.ComContext ctx) { }
+	@Override public void exitConst(ExprParser.ConstContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterExpr(SimpleCParser.ExprContext ctx) { }
+	@Override public void enterGrupo(ExprParser.GrupoContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitExpr(SimpleCParser.ExprContext ctx) { }
+	@Override public void exitGrupo(ExprParser.GrupoContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterSoma(ExprParser.SomaContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitSoma(ExprParser.SomaContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterProduto(ExprParser.ProdutoContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitProduto(ExprParser.ProdutoContext ctx) { }
 
 	/**
 	 * {@inheritDoc}
