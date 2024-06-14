@@ -2,10 +2,10 @@ grammar Expr;
 
 program : expr EOF ;
 
-expr : NUM #Const
-     | expr MULT expr #Produto
-     | expr SUM expr #Soma
-     | '(' expr ')' #Grupo 
+expr : n=NUM #Const
+     | e=expr MULT d=expr #Produto
+     | e=expr SUM d=expr #Soma
+     | '(' e=expr ')' #Grupo 
      ;
 
 NUM : [0-9]+ ;

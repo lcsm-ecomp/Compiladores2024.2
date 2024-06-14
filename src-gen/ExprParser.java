@@ -150,6 +150,7 @@ public class ExprParser extends Parser {
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class ConstContext extends ExprContext {
+		public Token n;
 		public TerminalNode NUM() { return getToken(ExprParser.NUM, 0); }
 		public ConstContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
@@ -168,6 +169,7 @@ public class ExprParser extends Parser {
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class GrupoContext extends ExprContext {
+		public ExprContext e;
 		public ExprContext expr() {
 			return getRuleContext(ExprContext.class,0);
 		}
@@ -188,13 +190,15 @@ public class ExprParser extends Parser {
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class SomaContext extends ExprContext {
+		public ExprContext e;
+		public ExprContext d;
+		public TerminalNode SUM() { return getToken(ExprParser.SUM, 0); }
 		public List<ExprContext> expr() {
 			return getRuleContexts(ExprContext.class);
 		}
 		public ExprContext expr(int i) {
 			return getRuleContext(ExprContext.class,i);
 		}
-		public TerminalNode SUM() { return getToken(ExprParser.SUM, 0); }
 		public SomaContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
@@ -212,13 +216,15 @@ public class ExprParser extends Parser {
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class ProdutoContext extends ExprContext {
+		public ExprContext e;
+		public ExprContext d;
+		public TerminalNode MULT() { return getToken(ExprParser.MULT, 0); }
 		public List<ExprContext> expr() {
 			return getRuleContexts(ExprContext.class);
 		}
 		public ExprContext expr(int i) {
 			return getRuleContext(ExprContext.class,i);
 		}
-		public TerminalNode MULT() { return getToken(ExprParser.MULT, 0); }
 		public ProdutoContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
@@ -260,7 +266,7 @@ public class ExprParser extends Parser {
 				_prevctx = _localctx;
 
 				setState(8);
-				match(NUM);
+				((ConstContext)_localctx).n = match(NUM);
 				}
 				break;
 			case T__0:
@@ -271,7 +277,7 @@ public class ExprParser extends Parser {
 				setState(9);
 				match(T__0);
 				setState(10);
-				expr(0);
+				((GrupoContext)_localctx).e = expr(0);
 				setState(11);
 				match(T__1);
 				}
@@ -294,25 +300,27 @@ public class ExprParser extends Parser {
 					case 1:
 						{
 						_localctx = new ProdutoContext(new ExprContext(_parentctx, _parentState));
+						((ProdutoContext)_localctx).e = _prevctx;
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
 						setState(15);
 						if (!(precpred(_ctx, 3))) throw new FailedPredicateException(this, "precpred(_ctx, 3)");
 						setState(16);
 						match(MULT);
 						setState(17);
-						expr(4);
+						((ProdutoContext)_localctx).d = expr(4);
 						}
 						break;
 					case 2:
 						{
 						_localctx = new SomaContext(new ExprContext(_parentctx, _parentState));
+						((SomaContext)_localctx).e = _prevctx;
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
 						setState(18);
 						if (!(precpred(_ctx, 2))) throw new FailedPredicateException(this, "precpred(_ctx, 2)");
 						setState(19);
 						match(SUM);
 						setState(20);
-						expr(3);
+						((SomaContext)_localctx).d = expr(3);
 						}
 						break;
 					}
