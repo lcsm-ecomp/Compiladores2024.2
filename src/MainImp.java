@@ -40,6 +40,22 @@ public class MainImp {
                   memoria.put(name,valor);
                   return 0;
             }
+            public Integer visitWhile(ImpParser.WhileContext tree) {
+                  Integer teste = tree.e.accept(this);
+                  while (teste!=0) {
+                        tree.cRep.accept(this);
+                        teste = tree.e.accept(this);
+                  }
+                  return 0;
+            }
+            public Integer visitIf(ImpParser.IfContext tree) {
+                  Integer teste = tree.e.accept(this);
+                  if (teste!=0)
+                     return tree.cTrue.accept(this);
+                  else
+                     return tree.cFalse.accept(this);
+                  
+            }
             public Integer visitBlock(ImpParser.BlockContext blk) {
                   for (int c=1;c<blk.getChildCount()-1;c++)
                       blk.getChild(c).accept(this);

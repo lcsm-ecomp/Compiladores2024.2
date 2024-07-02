@@ -1,5 +1,16 @@
 {
     x = 4;
     print(x+5);
-    print(3*9);
+    x = x * 3;
+    print(3*x);
+    x = x /100;
+    if (x)
+       print(1);
+    else 
+       print(2);
+    x = 50;
+    while (x) {
+        print(x);
+        x = x - 1;
+    }
 }
