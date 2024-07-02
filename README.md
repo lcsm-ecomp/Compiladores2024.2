@@ -26,6 +26,7 @@ Os arquivos deste projeto estão organizados nos seguintes arquivos e pastas:
 
 ```
 java -jar antlr.jar -o src-gen Expr.g4
+java -jar antlr.jar -o src-gen Imp.g4
 ```
 O comando acima executa o gerador ANTLR que converte a descrição da gramática (Expr.g4) em
 programas Java (Analisadores léxicos e sintáticos). Os códigos dos analisadores gerados serão armazendados na pasta src-gen.

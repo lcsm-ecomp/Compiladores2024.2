@@ -3,7 +3,29 @@ import org.antlr.v4.runtime.tree.*;
 import java.io.*;
 import java.util.*;
 
-public class Main {
+public class MainExpr {
+   public static int avalieVisitor(ExprParser.ExprContext exp) {
+      ExprBaseVisitor<Integer> visitor = new ExprBaseVisitor<Integer>() {
+            public Integer visitConst(ExprParser.ConstContext ctx) { 
+                  return Integer.parseInt(ctx.getText());
+            }
+            public Integer visitSoma(ExprParser.SomaContext ctx) { 
+                  Integer esq = ctx.e.accept(this);
+                  Integer dir = ctx.d.accept(this);
+                  return esq+dir;
+            }
+            public Integer visitProduto(ExprParser.ProdutoContext ctx) { 
+                  Integer esq = ctx.e.accept(this);
+                  Integer dir = ctx.d.accept(this);
+                  return esq*dir;
+            }
+            public Integer visitGrupo(ExprParser.GrupoContext ctx) { 
+                  return ctx.e.accept(this);
+            }
+
+      };
+      return exp.accept(visitor);
+   }   
    public static int avalie(ExprParser.ExprContext t) {
       
       if (t instanceof ExprParser.ConstContext) {
@@ -101,6 +123,7 @@ public class Main {
          ExprParser parser = new ExprParser(tokens);
          ExprParser.ExprContext t = parser.expr();
          System.out.printf("Valor = %d\n", avalie(t));
+         System.out.printf("Valor usando visitor= %d\n", avalieVisitor(t));
          passear(t);
          System.out.printf("valor usando listener = %d\n",avalie_walking(t));
          System.out.printf("codigo gerado:\n   %s\n",geracodigo_walking(t));
