@@ -88,6 +88,18 @@ public class ImpBaseListener implements ImpListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterDec(ImpParser.DecContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitDec(ImpParser.DecContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterGroup(ImpParser.GroupContext ctx) { }
 	/**
 	 * {@inheritDoc}

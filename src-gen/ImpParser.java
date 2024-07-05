@@ -17,7 +17,7 @@ public class ImpParser extends Parser {
 		new PredictionContextCache();
 	public static final int
 		T__0=1, T__1=2, T__2=3, T__3=4, T__4=5, T__5=6, T__6=7, T__7=8, T__8=9, 
-		T__9=10, OP=11, NUM=12, VAR=13, ESPACOS=14;
+		T__9=10, T__10=11, OP=12, NUM=13, VAR=14, ESPACOS=15;
 	public static final int
 		RULE_start = 0, RULE_com = 1, RULE_expr = 2;
 	private static String[] makeRuleNames() {
@@ -30,14 +30,14 @@ public class ImpParser extends Parser {
 	private static String[] makeLiteralNames() {
 		return new String[] {
 			null, "'print'", "'('", "')'", "';'", "'='", "'{'", "'}'", "'if'", "'else'", 
-			"'while'"
+			"'while'", "'int'"
 		};
 	}
 	private static final String[] _LITERAL_NAMES = makeLiteralNames();
 	private static String[] makeSymbolicNames() {
 		return new String[] {
-			null, null, null, null, null, null, null, null, null, null, null, "OP", 
-			"NUM", "VAR", "ESPACOS"
+			null, null, null, null, null, null, null, null, null, null, null, null, 
+			"OP", "NUM", "VAR", "ESPACOS"
 		};
 	}
 	private static final String[] _SYMBOLIC_NAMES = makeSymbolicNames();
@@ -196,6 +196,29 @@ public class ImpParser extends Parser {
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
+	public static class DecContext extends ComContext {
+		public Token name;
+		public ExprContext vInic;
+		public TerminalNode VAR() { return getToken(ImpParser.VAR, 0); }
+		public ExprContext expr() {
+			return getRuleContext(ExprContext.class,0);
+		}
+		public DecContext(ComContext ctx) { copyFrom(ctx); }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof ImpListener ) ((ImpListener)listener).enterDec(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof ImpListener ) ((ImpListener)listener).exitDec(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof ImpVisitor ) return ((ImpVisitor<? extends T>)visitor).visitDec(this);
+			else return visitor.visitChildren(this);
+		}
+	}
+	@SuppressWarnings("CheckReturnValue")
 	public static class BlockContext extends ComContext {
 		public List<ComContext> com() {
 			return getRuleContexts(ComContext.class);
@@ -278,7 +301,7 @@ public class ImpParser extends Parser {
 		enterRule(_localctx, 2, RULE_com);
 		int _la;
 		try {
-			setState(42);
+			setState(48);
 			_errHandler.sync(this);
 			switch (_input.LA(1)) {
 			case T__0:
@@ -320,7 +343,7 @@ public class ImpParser extends Parser {
 				setState(24);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
-				while (((_la) & ~0x3f) == 0 && ((1L << _la) & 9538L) != 0) {
+				while (((_la) & ~0x3f) == 0 && ((1L << _la) & 19778L) != 0) {
 					{
 					{
 					setState(21);
@@ -369,6 +392,22 @@ public class ImpParser extends Parser {
 				match(T__2);
 				setState(40);
 				((WhileContext)_localctx).cRep = com();
+				}
+				break;
+			case T__10:
+				_localctx = new DecContext(_localctx);
+				enterOuterAlt(_localctx, 6);
+				{
+				setState(42);
+				match(T__10);
+				setState(43);
+				((DecContext)_localctx).name = match(VAR);
+				setState(44);
+				match(T__4);
+				setState(45);
+				((DecContext)_localctx).vInic = expr(0);
+				setState(46);
+				match(T__3);
 				}
 				break;
 			default:
@@ -500,7 +539,7 @@ public class ImpParser extends Parser {
 			int _alt;
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(51);
+			setState(57);
 			_errHandler.sync(this);
 			switch (_input.LA(1)) {
 			case NUM:
@@ -509,7 +548,7 @@ public class ImpParser extends Parser {
 				_ctx = _localctx;
 				_prevctx = _localctx;
 
-				setState(45);
+				setState(51);
 				((ConstContext)_localctx).n = match(NUM);
 				}
 				break;
@@ -518,7 +557,7 @@ public class ImpParser extends Parser {
 				_localctx = new VarContext(_localctx);
 				_ctx = _localctx;
 				_prevctx = _localctx;
-				setState(46);
+				setState(52);
 				((VarContext)_localctx).n = match(VAR);
 				}
 				break;
@@ -527,11 +566,11 @@ public class ImpParser extends Parser {
 				_localctx = new GroupContext(_localctx);
 				_ctx = _localctx;
 				_prevctx = _localctx;
-				setState(47);
+				setState(53);
 				match(T__1);
-				setState(48);
+				setState(54);
 				((GroupContext)_localctx).e = expr(0);
-				setState(49);
+				setState(55);
 				match(T__2);
 				}
 				break;
@@ -539,7 +578,7 @@ public class ImpParser extends Parser {
 				throw new NoViableAltException(this);
 			}
 			_ctx.stop = _input.LT(-1);
-			setState(58);
+			setState(64);
 			_errHandler.sync(this);
 			_alt = getInterpreter().adaptivePredict(_input,3,_ctx);
 			while ( _alt!=2 && _alt!=org.antlr.v4.runtime.atn.ATN.INVALID_ALT_NUMBER ) {
@@ -551,16 +590,16 @@ public class ImpParser extends Parser {
 					_localctx = new OpContext(new ExprContext(_parentctx, _parentState));
 					((OpContext)_localctx).e = _prevctx;
 					pushNewRecursionContext(_localctx, _startState, RULE_expr);
-					setState(53);
+					setState(59);
 					if (!(precpred(_ctx, 2))) throw new FailedPredicateException(this, "precpred(_ctx, 2)");
-					setState(54);
+					setState(60);
 					((OpContext)_localctx).o = match(OP);
-					setState(55);
+					setState(61);
 					((OpContext)_localctx).d = expr(3);
 					}
 					} 
 				}
-				setState(60);
+				setState(66);
 				_errHandler.sync(this);
 				_alt = getInterpreter().adaptivePredict(_input,3,_ctx);
 			}
@@ -593,45 +632,49 @@ public class ImpParser extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\u0004\u0001\u000e>\u0002\u0000\u0007\u0000\u0002\u0001\u0007\u0001\u0002"+
+		"\u0004\u0001\u000fD\u0002\u0000\u0007\u0000\u0002\u0001\u0007\u0001\u0002"+
 		"\u0002\u0007\u0002\u0001\u0000\u0001\u0000\u0001\u0000\u0001\u0001\u0001"+
 		"\u0001\u0001\u0001\u0001\u0001\u0001\u0001\u0001\u0001\u0001\u0001\u0001"+
 		"\u0001\u0001\u0001\u0001\u0001\u0001\u0001\u0001\u0001\u0001\u0001\u0005"+
 		"\u0001\u0017\b\u0001\n\u0001\f\u0001\u001a\t\u0001\u0001\u0001\u0001\u0001"+
 		"\u0001\u0001\u0001\u0001\u0001\u0001\u0001\u0001\u0001\u0001\u0001\u0001"+
 		"\u0001\u0001\u0001\u0001\u0001\u0001\u0001\u0001\u0001\u0001\u0001\u0001"+
-		"\u0001\u0001\u0003\u0001+\b\u0001\u0001\u0002\u0001\u0002\u0001\u0002"+
-		"\u0001\u0002\u0001\u0002\u0001\u0002\u0001\u0002\u0003\u00024\b\u0002"+
-		"\u0001\u0002\u0001\u0002\u0001\u0002\u0005\u00029\b\u0002\n\u0002\f\u0002"+
-		"<\t\u0002\u0001\u0002\u0000\u0001\u0004\u0003\u0000\u0002\u0004\u0000"+
-		"\u0000B\u0000\u0006\u0001\u0000\u0000\u0000\u0002*\u0001\u0000\u0000\u0000"+
-		"\u00043\u0001\u0000\u0000\u0000\u0006\u0007\u0003\u0002\u0001\u0000\u0007"+
+		"\u0001\u0001\u0001\u0001\u0001\u0001\u0001\u0001\u0001\u0001\u0001\u0001"+
+		"\u0001\u0001\u0003\u00011\b\u0001\u0001\u0002\u0001\u0002\u0001\u0002"+
+		"\u0001\u0002\u0001\u0002\u0001\u0002\u0001\u0002\u0003\u0002:\b\u0002"+
+		"\u0001\u0002\u0001\u0002\u0001\u0002\u0005\u0002?\b\u0002\n\u0002\f\u0002"+
+		"B\t\u0002\u0001\u0002\u0000\u0001\u0004\u0003\u0000\u0002\u0004\u0000"+
+		"\u0000I\u0000\u0006\u0001\u0000\u0000\u0000\u00020\u0001\u0000\u0000\u0000"+
+		"\u00049\u0001\u0000\u0000\u0000\u0006\u0007\u0003\u0002\u0001\u0000\u0007"+
 		"\b\u0005\u0000\u0000\u0001\b\u0001\u0001\u0000\u0000\u0000\t\n\u0005\u0001"+
 		"\u0000\u0000\n\u000b\u0005\u0002\u0000\u0000\u000b\f\u0003\u0004\u0002"+
 		"\u0000\f\r\u0005\u0003\u0000\u0000\r\u000e\u0005\u0004\u0000\u0000\u000e"+
-		"+\u0001\u0000\u0000\u0000\u000f\u0010\u0005\r\u0000\u0000\u0010\u0011"+
+		"1\u0001\u0000\u0000\u0000\u000f\u0010\u0005\u000e\u0000\u0000\u0010\u0011"+
 		"\u0005\u0005\u0000\u0000\u0011\u0012\u0003\u0004\u0002\u0000\u0012\u0013"+
-		"\u0005\u0004\u0000\u0000\u0013+\u0001\u0000\u0000\u0000\u0014\u0018\u0005"+
+		"\u0005\u0004\u0000\u0000\u00131\u0001\u0000\u0000\u0000\u0014\u0018\u0005"+
 		"\u0006\u0000\u0000\u0015\u0017\u0003\u0002\u0001\u0000\u0016\u0015\u0001"+
 		"\u0000\u0000\u0000\u0017\u001a\u0001\u0000\u0000\u0000\u0018\u0016\u0001"+
 		"\u0000\u0000\u0000\u0018\u0019\u0001\u0000\u0000\u0000\u0019\u001b\u0001"+
-		"\u0000\u0000\u0000\u001a\u0018\u0001\u0000\u0000\u0000\u001b+\u0005\u0007"+
+		"\u0000\u0000\u0000\u001a\u0018\u0001\u0000\u0000\u0000\u001b1\u0005\u0007"+
 		"\u0000\u0000\u001c\u001d\u0005\b\u0000\u0000\u001d\u001e\u0005\u0002\u0000"+
 		"\u0000\u001e\u001f\u0003\u0004\u0002\u0000\u001f \u0005\u0003\u0000\u0000"+
 		" !\u0003\u0002\u0001\u0000!\"\u0005\t\u0000\u0000\"#\u0003\u0002\u0001"+
-		"\u0000#+\u0001\u0000\u0000\u0000$%\u0005\n\u0000\u0000%&\u0005\u0002\u0000"+
+		"\u0000#1\u0001\u0000\u0000\u0000$%\u0005\n\u0000\u0000%&\u0005\u0002\u0000"+
 		"\u0000&\'\u0003\u0004\u0002\u0000\'(\u0005\u0003\u0000\u0000()\u0003\u0002"+
-		"\u0001\u0000)+\u0001\u0000\u0000\u0000*\t\u0001\u0000\u0000\u0000*\u000f"+
-		"\u0001\u0000\u0000\u0000*\u0014\u0001\u0000\u0000\u0000*\u001c\u0001\u0000"+
-		"\u0000\u0000*$\u0001\u0000\u0000\u0000+\u0003\u0001\u0000\u0000\u0000"+
-		",-\u0006\u0002\uffff\uffff\u0000-4\u0005\f\u0000\u0000.4\u0005\r\u0000"+
-		"\u0000/0\u0005\u0002\u0000\u000001\u0003\u0004\u0002\u000012\u0005\u0003"+
-		"\u0000\u000024\u0001\u0000\u0000\u00003,\u0001\u0000\u0000\u00003.\u0001"+
-		"\u0000\u0000\u00003/\u0001\u0000\u0000\u00004:\u0001\u0000\u0000\u0000"+
-		"56\n\u0002\u0000\u000067\u0005\u000b\u0000\u000079\u0003\u0004\u0002\u0003"+
-		"85\u0001\u0000\u0000\u00009<\u0001\u0000\u0000\u0000:8\u0001\u0000\u0000"+
-		"\u0000:;\u0001\u0000\u0000\u0000;\u0005\u0001\u0000\u0000\u0000<:\u0001"+
-		"\u0000\u0000\u0000\u0004\u0018*3:";
+		"\u0001\u0000)1\u0001\u0000\u0000\u0000*+\u0005\u000b\u0000\u0000+,\u0005"+
+		"\u000e\u0000\u0000,-\u0005\u0005\u0000\u0000-.\u0003\u0004\u0002\u0000"+
+		"./\u0005\u0004\u0000\u0000/1\u0001\u0000\u0000\u00000\t\u0001\u0000\u0000"+
+		"\u00000\u000f\u0001\u0000\u0000\u00000\u0014\u0001\u0000\u0000\u00000"+
+		"\u001c\u0001\u0000\u0000\u00000$\u0001\u0000\u0000\u00000*\u0001\u0000"+
+		"\u0000\u00001\u0003\u0001\u0000\u0000\u000023\u0006\u0002\uffff\uffff"+
+		"\u00003:\u0005\r\u0000\u00004:\u0005\u000e\u0000\u000056\u0005\u0002\u0000"+
+		"\u000067\u0003\u0004\u0002\u000078\u0005\u0003\u0000\u00008:\u0001\u0000"+
+		"\u0000\u000092\u0001\u0000\u0000\u000094\u0001\u0000\u0000\u000095\u0001"+
+		"\u0000\u0000\u0000:@\u0001\u0000\u0000\u0000;<\n\u0002\u0000\u0000<=\u0005"+
+		"\f\u0000\u0000=?\u0003\u0004\u0002\u0003>;\u0001\u0000\u0000\u0000?B\u0001"+
+		"\u0000\u0000\u0000@>\u0001\u0000\u0000\u0000@A\u0001\u0000\u0000\u0000"+
+		"A\u0005\u0001\u0000\u0000\u0000B@\u0001\u0000\u0000\u0000\u0004\u0018"+
+		"09@";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {

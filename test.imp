@@ -1,16 +1,14 @@
 {
-    x = 4;
-    print(x+5);
-    x = x * 3;
-    print(3*x);
-    x = x /100;
-    if (x)
-       print(1);
-    else 
-       print(2);
-    x = 50;
-    while (x) {
-        print(x);
-        x = x - 1;
+    total = 0;
+    y = 5000;
+    while (y) {
+       x=5000;
+       while (x) {
+          total = total + (x+y);
+          x = x - 1;
+       }
+       y = y - 1;
+       
     }
+    print(total);
 }

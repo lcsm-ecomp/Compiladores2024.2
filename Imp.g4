@@ -1,10 +1,4 @@
 grammar Imp;
-// Análise Léxica
-OP : '+' | '-' | '*' | '/' | '^' ;
-NUM : [0-9]+ ;
-VAR : [a-z]+ ;
-
-ESPACOS : (' '|'\n') -> skip ;
 
 // Análise Sintática
 start : com EOF ; 
@@ -15,6 +9,7 @@ com : 'print' '(' e=expr ')' ';' #Print
     | '{' com* '}' #Block
     | 'if'  '(' e=expr ')' cTrue=com 'else' cFalse=com #If
     | 'while' '(' e=expr ')' cRep=com #While
+    | 'int' name=VAR '=' vInic=expr ';' #Dec
     ;
 //Expressoes
 expr : n=NUM #Const 
@@ -23,3 +18,9 @@ expr : n=NUM #Const
     | '(' e=expr ')' #Group
     ;
      
+// Análise Léxica
+OP : '+' | '-' | '*' | '/' | '>' ;
+NUM : [0-9]+ ;
+VAR : [a-z]+ ;
+
+ESPACOS : (' '|'\n') -> skip ;

@@ -77,6 +77,18 @@ public interface ImpListener extends ParseTreeListener {
 	 */
 	void exitWhile(ImpParser.WhileContext ctx);
 	/**
+	 * Enter a parse tree produced by the {@code Dec}
+	 * labeled alternative in {@link ImpParser#com}.
+	 * @param ctx the parse tree
+	 */
+	void enterDec(ImpParser.DecContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code Dec}
+	 * labeled alternative in {@link ImpParser#com}.
+	 * @param ctx the parse tree
+	 */
+	void exitDec(ImpParser.DecContext ctx);
+	/**
 	 * Enter a parse tree produced by the {@code Group}
 	 * labeled alternative in {@link ImpParser#expr}.
 	 * @param ctx the parse tree

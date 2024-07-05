@@ -51,6 +51,13 @@ public interface ImpVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitWhile(ImpParser.WhileContext ctx);
 	/**
+	 * Visit a parse tree produced by the {@code Dec}
+	 * labeled alternative in {@link ImpParser#com}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitDec(ImpParser.DecContext ctx);
+	/**
 	 * Visit a parse tree produced by the {@code Group}
 	 * labeled alternative in {@link ImpParser#expr}.
 	 * @param ctx the parse tree
