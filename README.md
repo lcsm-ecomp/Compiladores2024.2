@@ -1,6 +1,6 @@
-# Compiladores2024.1
+# Compiladores2024.2
 Códigos Desenvolvidos pela disciplina Compiladores
-no semestre 2024.1
+no semestre 2024.2
 
 
 # Estrutura de Arquivos:
