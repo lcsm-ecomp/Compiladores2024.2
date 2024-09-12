@@ -123,7 +123,3 @@ java ArithmeticEvaluator
 ```
 
 Agora você pode inserir expressões aritméticas no terminal, como `3 + 5 * (10 - 4)`, e o avaliador retornará o resultado.
-
-### Conclusão
-
-Este tutorial mostrou como criar um simples avaliador de expressões aritméticas usando ANTLR. A ferramenta é muito poderosa e pode ser estendida para lidar com gramáticas muito mais complexas.
